@@ -28,7 +28,7 @@
 
   <build>
     <plugins>
-        <plugin>
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.12</version>
@@ -39,8 +39,8 @@
             </goals>
             </execution>
         </executions>
-        </plugin>
-        <plugin>
+      </plugin>
+      <plugin>
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
         <version>4.3.0</version>
@@ -51,8 +51,27 @@
                 <version>2.3.1</version>
             </dependency>
         </dependencies>
-        </plugin>
+      </plugin>
+      <plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-checkstyle-plugin</artifactId>
+    	<version>3.3.1</version>
+    	<configuration>
+    		<failsOnError>true</failsOnError>
+    		<configLocation>checkstyle.xml</configLocation>
+    		<consoleOutput>true</consoleOutput>
+    	</configuration>
+    	<executions>
+    		<execution>
+    			<phase>package</phase>
+    			<goals>
+    				<goal>checkstyle</goal>
+    			</goals>
+    		</execution>
+    	</executions>
+      </plugin>
     </plugins>
+
     <pluginManagement>
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
