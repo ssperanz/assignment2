@@ -1,0 +1,23 @@
+name: Build e aggiornamento analisi statica
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+jobs:
+  Main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: "11"
+          distribution: "temurin"
+          cache: maven
+      - name: Build with maven
+        run: mvn -B install --file pom.xml jacoco:report
+
+      - name: Coveralls Coverage Report Submission
+        run: mvn coveralls:report -D repoToken=${{ secrets.COVERALL }}
